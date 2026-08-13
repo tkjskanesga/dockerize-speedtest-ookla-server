@@ -1,0 +1,23 @@
+services:
+  speedtest-ookla:
+    image: ghcr.io/tkjskanesga/speedtest-ookla:latest
+    restart: unless-stopped
+    container_name: speedtest-ookla
+    ports:
+      - "80:80/tcp"
+      - "443:443/tcp"
+      - "8080:8080/tcp"
+      - "8080:8080/udp"
+      - "5060:5060/tcp"
+      - "5060:5060/udp"
+    volumes:
+      # Named volume digunakan agar Docker menyalin file bawaan (seperti binary OoklaServer) secara otomatis
+      - speedtest-ookla-data:/home/ookla
+      # Konfigurasi utama OoklaServer
+      - ./OoklaServer.properties:/home/ookla/OoklaServer.properties
+      # Folder sertifikat SSL (opsional jika menggunakan SSL manual)
+      # Pastikan folder ./certs di host memiliki permission read/write untuk UID 1100 (chown -R 1100:1100 ./certs)
+      # - ./certs:/home/ookla/certs
+
+volumes:
+  speedtest-ookla-data:
