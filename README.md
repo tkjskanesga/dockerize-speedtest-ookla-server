@@ -5,18 +5,12 @@
 
 Repository ini menyediakan konfigurasi Docker lengkap untuk menjalankan **Ookla Speedtest Server** secara aman, efisien, dan siap pakai. Menggunakan base image `debian:bookworm-slim` dan dijalankan di bawah non-root user (`ookla` dengan UID/GID `1100`).
 
----
-
 ## Persyaratan Sistem
-
 - **Docker Engine** v20.10+
 - **Docker Compose** v2.0+
 - Port publik yang terbuka dan dapat diakses dari internet.
 
----
-
 ## Port yang Digunakan
-
 Server ini membutuhkan port berikut untuk diekspos agar pengujian kecepatan berjalan lancar:
 
 | Port | Protokol | Deskripsi | Status |
@@ -25,8 +19,6 @@ Server ini membutuhkan port berikut untuk diekspos agar pengujian kecepatan berj
 | **443** | TCP | Secure HTTPS Connection | Wajib |
 | **8080** | TCP & UDP | Port Utama Ookla Speedtest | Wajib |
 | **5060** | TCP & UDP | Port Cadangan Ookla Speedtest | Wajib |
-
----
 
 ## Panduan Instalasi Cepat
 
@@ -47,10 +39,8 @@ docker compose up -d
 docker compose logs -f
 ```
 
----
 
 ## Konfigurasi Manual SSL (Custom Certificates)
-
 Jika Anda ingin menggunakan sertifikat SSL sendiri (misal dari Cloudflare, Commercial CA, atau sertifikat lokal) dan **tidak** menggunakan fitur auto Let's Encrypt bawaan Ookla, ikuti langkah berikut:
 
 ### Langkah 1: Siapkan Sertifikat SSL di Host
@@ -87,8 +77,6 @@ Buka berkas `OoklaServer.properties` dan sesuaikan parameter berikut:
    ```properties
    OoklaServer.enableAutoUpdate = true
    ```
-
----
 
 ## Solusi Kendala & Troubleshooting
 
