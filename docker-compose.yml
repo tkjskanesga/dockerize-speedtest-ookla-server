@@ -1,8 +1,8 @@
 services:
-  speedtest-ookla:
+  speedtest-ookla-server:
     image: ghcr.io/tkjskanesga/speedtest-ookla:latest
     restart: unless-stopped
-    container_name: speedtest-ookla
+    container_name: ookla-server
     ports:
       - "80:80/tcp"
       - "443:443/tcp"
@@ -12,7 +12,7 @@ services:
       - "5060:5060/udp"
     volumes:
       # Named volume digunakan agar Docker menyalin file bawaan (seperti binary OoklaServer) secara otomatis
-      - speedtest-ookla-data:/home/ookla
+      - speedtest-ookla-server-data:/home/ookla
       # Konfigurasi utama OoklaServer
       - ./OoklaServer.properties:/home/ookla/OoklaServer.properties
       # Folder sertifikat SSL (opsional jika menggunakan SSL manual)
@@ -20,4 +20,4 @@ services:
       # - ./certs:/home/ookla/certs
 
 volumes:
-  speedtest-ookla-data:
+  speedtest-ookla-server-data:
